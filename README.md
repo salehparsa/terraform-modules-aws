@@ -1,6 +1,13 @@
-# Terraform Modules for AWS
+# AWS Terraform Module
 
-This module contains ELB, Auto Scaling Group, Security Groups and Remote State configurations to avoid DRY during deployment.
+Terraform module which creates cluster solution on AWS.
+
+Following resources are supported in this module:
+
+* [AWS Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/)
+* [AWS Elastic Auto Scaling](https://aws.amazon.com/autoscaling/)
+* [AWS Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
+* [S3 Backend Type](https://www.terraform.io/docs/backends/types/s3.html)
 
 ## Pre-requisites
 
@@ -23,4 +30,38 @@ environment variables:
 ```
 export AWS_ACCESS_KEY_ID=(your access key id)
 export AWS_SECRET_ACCESS_KEY=(your secret access key)
+```
+## Usage
+
+By cloning this repository:
+
+```hcl
+module "cluster_application" {
+  source = "(Path to Your Module)/modules/cluster_application"
+
+  cluster_name           = "cluster-staging"
+  db_remote_state_bucket = "${var.db_remote_state_bucket}"
+  db_remote_state_key    = "${var.db_remote_state_key}"
+
+  instance_type = "t2.micro"
+  min_size      = 1
+  max_size      = 2
+}
+```
+
+By using the released version:
+
+```hcl
+module "cluster_application" {
+  source = "git@github.com:salehparsa/terraform-modules-aws.git"
+  version = "1.0.0"
+
+  cluster_name           = "cluster-staging"
+  db_remote_state_bucket = "${var.db_remote_state_bucket}"
+  db_remote_state_key    = "${var.db_remote_state_key}"
+
+  instance_type = "t2.micro"
+  min_size      = 1
+  max_size      = 2
+}
 ```
