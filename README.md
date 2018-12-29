@@ -3,7 +3,7 @@
 Terraform module which creates cluster solution on AWS.
 
 Following resources are supported in this module:
-
+* [AWS Lunch Configuration](https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchConfiguration.html)
 * [AWS Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/)
 * [AWS Elastic Auto Scaling](https://aws.amazon.com/autoscaling/)
 * [AWS Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
